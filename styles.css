@@ -1,190 +1,48 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
   color: #333;
-  line-height: 1.6;
 }
 
 header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #232f3e;
   color: white;
-  padding: 3em 2em;
+  padding: 2em;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-bottom: 4px solid #ff9900;
-  animation: slideDown 0.6s ease-out;
-}
-
-header h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-header p {
-  font-size: 1.1em;
-  opacity: 0.95;
-  font-weight: 300;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  flex-wrap: wrap;
 }
 
 nav a {
-  color: white;
-  padding: 0.8em 1.5em;
+  color: #ff9900;
+  margin: 0 1em;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95em;
-  transition: all 0.3s ease;
-  position: relative;
-  margin: 0.5em 0.2em;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 3px;
-  background-color: #ff9900;
-  transition: width 0.3s ease;
+  font-weight: bold;
 }
 
 nav a:hover {
-  color: #ff9900;
-}
-
-nav a:hover::after {
-  width: 100%;
+  text-decoration: underline;
 }
 
 section.projects {
-  padding: 3em 2em;
-  max-width: 1000px;
+  padding: 2em;
+  max-width: 900px;
   margin: auto;
-}
-
-section.projects h2 {
-  font-size: 2em;
-  color: white;
-  margin-bottom: 2em;
-  text-align: center;
-  font-weight: 700;
 }
 
 .project {
   background: white;
-  border: none;
-  border-radius: 15px;
-  padding: 2em;
-  margin-bottom: 2em;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border-left: 5px solid #ff9900;
-  overflow: hidden;
-}
-
-.project:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
-}
-
-.project h3 {
-  color: #667eea;
-  font-size: 1.4em;
-  margin-bottom: 0.8em;
-  font-weight: 700;
-}
-
-.project p {
-  color: #555;
-  margin-bottom: 1em;
-  font-size: 0.95em;
-}
-
-.project a {
-  display: inline-block;
-  color: white;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 0.7em 1.5em;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 0.5em;
-}
-
-.project a:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 footer {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #232f3e;
   color: white;
   text-align: center;
-  padding: 2em;
-  margin-top: 3em;
-  border-top: 4px solid #ff9900;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-}
-
-footer p {
-  font-weight: 500;
-  opacity: 0.95;
-}
-
-/* Animations */
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 1.8em;
-  }
-
-  header {
-    padding: 2em 1em;
-  }
-
-  section.projects {
-    padding: 2em 1em;
-  }
-
-  .project {
-    padding: 1.5em;
-  }
-
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav a {
-    margin: 0.3em;
-  }
+  padding: 1em;
+  margin-top: 2em;
 }
