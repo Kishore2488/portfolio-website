@@ -20,6 +20,44 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Sync files to S3
+      - name: Sync CSS files to S3 (No Cache)
         run: |
-          aws s3 sync . s3://my-portfolio-bucket-kishore --delete
+          aws s3 sync . s3://my-portfolio-bucket-kishore --delete \
+            --include "*.css" \
+            --exclude "*" \
+            --metadata-directive REPLACE \
+            --cache-control "max-age=0, no-cache, no-store, must-revalidate"
+
+      - name: Sync HTML files to S3 (1 Hour Cache)
+        run: |
+          aws s3 sync . s3://my-portfolio-bucket-kishore --delete \
+            --include "*.html" \
+            --exclude "*" \
+            --metadata-directive REPLACE \
+            --cache-control "max-age=3600"
+
+      - name: Sync Other files to S3 (24 Hour Cache)
+        run: |
+          aws s3 sync . s3://my-portfolio-bucket-kishore --delete \
+            --exclude "*.css" \
+            --exclude "*.html" \
+            --metadata-directive REPLACE \
+            --cache-control "max-age=86400"
+
+      - name: Check CloudFront Distribution ID
+        run: |
+          if [ -z "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
+            echo "⚠️  WARNING: CLOUDFRONT_DISTRIBUTION_ID secret is not set!"
+            echo "CloudFront cache invalidation will not be performed."
+            echo "Without this, cached CSS/HTML files may take up to 24 hours to update."
+            echo "To enable cache invalidation, set the CLOUDFRONT_DISTRIBUTION_ID secret in GitHub."
+          else
+            echo "✓ CLOUDFRONT_DISTRIBUTION_ID is set. Cache invalidation will proceed."
+          fi
+
+      - name: Invalidate CloudFront Cache
+        if: secrets.CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
