@@ -40,7 +40,7 @@ section.projects {
 }
 
 footer {
-  background: rgb(0, 0, 0);   /* Bright yellow background */
+  background-color: #232f3e;   /* Bright yellow background */
   color: red;           /* Red text */
   text-align: center;
   padding: 1em;
